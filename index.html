@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shikha Gour | Data Analyst Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #111827; /* Dark Blue-Gray */
+            --primary-text: #F9FAFB; /* Almost White */
+            --secondary-text: #9CA3AF; /* Lighter Gray */
+            --accent-color: #39FF14; /* Neon Green */
+            --card-bg: #1F2937; /* Darker Blue-Gray */
+            --border-color: rgba(57, 255, 20, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+        }
+
+        /* Accent color for text */
+        .text-accent {
+            color: var(--accent-color);
+        }
+
+        /* Section Heading Underline */
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Card styles */
+        .custom-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(57, 255, 20, 0.1);
+            border-color: rgba(57, 255, 20, 0.5);
+        }
+
+        /* Skill Tag styles */
+        .skill-tag {
+            background-color: rgba(57, 255, 20, 0.08);
+            color: var(--accent-color);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background-color: rgba(57, 255, 20, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Sticky Navbar */
+        #navbar.scrolled {
+            background-color: rgba(31, 41, 55, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 3px solid var(--bg-color);
+        }
+
+        /* Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(80px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .icon-container {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        .icon-container:hover {
+            transform: scale(1.1);
+        }
+        .icon-container svg {
+            width: 28px;
+            height: 28px;
+        }
+        .highlight-name {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 0 12px;
+            border-radius: 8px;
+        }
+
+        .bordered-heading {
+            border: 2px solid var(--accent-color);
+            padding: 8px 24px;
+            border-radius: 9999px;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .about-social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary-text);
+            color: var(--secondary-text);
+            transition: all 0.3s ease;
+        }
+
+        .about-social-icon:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+
+        .btn-outline {
+            border-color: var(--secondary-text);
+            color: var(--secondary-text);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+        }
+
+        .background-card {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+
+        .background-item .icon-bg {
+            background-color: rgba(57, 255, 20, 0.1);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 1.5rem;
+        }
+        .background-item .icon-bg img {
+            width: 36px;
+            height: 36px;
+        }
+        .background-item h4 {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: var(--primary-text);
+        }
+        .background-item p {
+            font-size: 1rem;
+            color: var(--secondary-text);
+        }
+         .background-item ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+        .background-item li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 0.5rem;
+        }
+        .background-item li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 md:px-12 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold">SG.</a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-accent transition-colors">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-accent transition-colors">About Me</a>
+                    <a href="#skills" class="text-gray-300 hover:text-accent transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-accent transition-colors">Projects</a>
+                    <a href="#background" class="text-gray-300 hover:text-accent transition-colors">Background</a>
+                    <a href="#contact" class="text-gray-300 hover:text-accent transition-colors">Contact</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-40 flex items-center justify-center transition-opacity duration-300">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-white focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="flex flex-col items-center space-y-8">
+            <a href="#about" class="mobile-menu-link text-3xl text-gray-300 hover:text-accent transition-colors">About Me</a>
+            <a href="#skills" class="mobile-menu-link text-3xl text-gray-300 hover:text-accent transition-colors">Skills</a>
+            <a href="#projects" class="mobile-menu-link text-3xl text-gray-300 hover:text-accent transition-colors">Projects</a>
+            <a href="#background" class="mobile-menu-link text-3xl text-gray-300 hover:text-accent transition-colors">Background</a>
+            <a href="#contact" class="mobile-menu-link text-3xl text-gray-300 hover:text-accent transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="home" class="min-h-screen flex items-center justify-center text-center relative overflow-hidden">
+        <div id="particles-js"></div>
+        <div class="content-container p-4">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
+                <span class="highlight-name">Shikha</span> Gour
+            </h1>
+            <p class="text-xl md:text-2xl text-accent mb-8 font-semibold">Data Analyst & AI Enthusiast</p>
+            <div class="flex justify-center items-center space-x-6">
+                <a href="mailto:shikhagour2005@gmail.com" class="text-gray-400 hover:text-accent transition duration-300">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/shikha-gour-707103367" target="_blank" class="text-gray-400 hover:text-accent transition duration-300">
+                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="tel:+916262655244" class="text-gray-400 hover:text-accent transition duration-300">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 md:px-12 py-16 space-y-32">
+
+        <!-- About Me Section -->
+        <section id="about" class="reveal">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="bordered-heading inline-block mb-12">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                        <h2>Hello,</h2>
+                        <h2>I'm <span class="text-accent">Shikha!</span></h2>
+                    </div>
+                    <div>
+                        <p class="text-lg text-secondary-text leading-relaxed mb-8">
+                            A Data Analyst and <span class="text-accent">AI Enthusiast</span> showcasing expertise in end-to-end business processes. Proficient in <span class="text-accent">SQL</span>, <span class="text-accent">Python</span>, <span class="text-accent">Jupyter Notebooks</span>, and <span class="text-accent">Tableau</span> for comprehensive data analysis and visualization. Comfortable with the full data lifecycle, from processing to dashboard creation, and presenting actionable insights with effective, engaging story-telling.
+                        </p>
+                        <div class="flex items-center gap-4 mb-8">
+                            <a href="https://linkedin.com/in/shikha-gour-707103367" target="_blank" class="about-social-icon">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                             <a href="tel:+916262655244" class="about-social-icon">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            </a>
+                            <a href="mailto:shikhagour2005@gmail.com" class="about-social-icon">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#projects" class="btn btn-outline">Projects</a>
+                            <a href="https://i.postimg.cc/N2HzTLBX/Shikha-Gour.png" download="Shikha_Gour_CV.png" class="btn btn-primary">Download CV</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="reveal">
+            <h2 class="section-heading text-4xl font-bold text-center mb-16">Technical Skills</h2>
+            <div class="custom-card p-8 md:p-12 max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+                    
+                    <!-- Programming Languages -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-white">Programming</h3>
+                        <ul class="space-y-5 text-lg">
+                            <li class="flex items-center gap-4">
+                                <div class="icon-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                      </svg>                                                                      
+                                </div>
+                                <span>SQL</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="icon-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L12 15.25l5.571-3M3.375 7.5l9.375 5.25L21.375 7.5M12 21.75l8.625-5.25M3.375 16.5l8.625 5.25" />
+                                    </svg>
+                                </div>
+                                <span>Python</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Data Analytic Tools -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-white">Analytic Tools</h3>
+                        <ul class="space-y-5 text-lg">
+                            <li class="flex items-center gap-4">
+                                <div class="icon-container">
+                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                </div>
+                                <span>Excel</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="icon-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                                </div>
+                                <span>Jupyter Notebook</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Data Visualization Tools -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-white">Visualization</h3>
+                        <ul class="space-y-5 text-lg">
+                            <li class="flex items-center gap-4">
+                                <div class="icon-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 1.5m1-1.5l1 1.5m0 0l.5 1.5m.5-1.5h-1.5m0 0l1.5-2.25m0 0l1.5 2.25m0 0l1.5-2.25m0 0l1.5 2.25M12 18.75l-1.5-2.25m1.5 2.25l1.5-2.25M12 18.75l-1.5 2.25M12 18.75l1.5 2.25M6 16.5h12M6 16.5L4.5 18M18 16.5l1.5 1.5" /></svg>
+                                </div>
+                                <span>Tableau / Power BI</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Data Analytic Methods -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-white">Analytic Methods</h3>
+                        <ul class="space-y-2 text-lg list-disc list-inside text-secondary-text">
+                            <li>Statistical Analysis</li>
+                            <li>Predictive Modeling</li>
+                            <li>Data Wrangling</li>
+                            <li>Segmentation</li>
+                            <li>A/B Testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="reveal">
+            <h2 class="section-heading text-4xl font-bold text-center mb-16">Notable Projects</h2>
+            <div class="space-y-16 max-w-4xl mx-auto">
+
+                <!-- Project 1 -->
+                <div class="custom-card p-8 text-center md:text-left">
+                    <div class="md:order-1">
+                        <p class="text-6xl font-black text-gray-700 text-center mb-2">01</p>
+                        <h3 class="text-3xl font-bold mb-4 text-accent text-center">Civic Issue Reporting System</h3>
+                        <p class="text-secondary-text mb-6">Developed a platform for citizens to report local civic issues and track their resolution status. Designed and implemented dashboards for authorities and users to gain actionable insights, which achieved improved user engagement and a more efficient issue resolution workflow.</p>
+                        <div class="flex flex-wrap gap-3 justify-center">
+                             <span class="skill-tag px-4 py-2 rounded-full font-medium">Python</span>
+                             <span class="skill-tag px-4 py-2 rounded-full font-medium">SQL</span>
+                             <span class="skill-tag px-4 py-2 rounded-full font-medium">Dashboarding</span>
+                             <span class="skill-tag px-4 py-2 rounded-full font-medium">Data Visualization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="custom-card p-8 text-center md:text-left">
+                    <div>
+                        <p class="text-6xl font-black text-gray-700 text-center mb-2">02</p>
+                        <h3 class="text-3xl font-bold mb-4 text-accent text-center">Smart Expense Tracker</h3>
+                        <p class="text-secondary-text mb-6">Implemented a smart expense tracker to help users manage their finances. The application provides data-driven insights and visualizations, empowering users to save up to 30% on their monthly expenses through better financial awareness and decision-making.</p>
+                         <div class="flex flex-wrap gap-3 justify-center">
+                            <span class="skill-tag px-4 py-2 rounded-full font-medium">Python</span>
+                            <span class="skill-tag px-4 py-2 rounded-full font-medium">Statistical Analysis</span>
+                            <span class="skill-tag px-4 py-2 rounded-full font-medium">Data Analytics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Background Section -->
+        <section id="background" class="reveal">
+            <div class="max-w-6xl mx-auto">
+                 <h2 class="bordered-heading inline-block mb-12">Education & Experience Background</h2>
+                 <div class="grid md:grid-cols-2 gap-16">
+                     <!-- Education Column -->
+                     <div class="space-y-8">
+                         <h3 class="text-3xl font-bold text-white">EDUCATION</h3>
+                         <div class="background-card space-y-8">
+                             <div class="background-item flex">
+                                 <div class="icon-bg">
+                                     <img src="https://placehold.co/40x40/39FF14/111827?text=SATI" alt="SATI logo">
+                                 </div>
+                                 <div>
+                                     <h4>B.Tech, AI & Data Science (2023 - 2027)</h4>
+                                     <p>Samrat Ashok Technological Institute, Vidisha</p>
+                                     <p class="text-sm">Focused on core concepts of machine learning, neural networks, and big data technologies. Gained practical experience in model development and data pipeline creation.</p>
+                                 </div>
+                             </div>
+                              <div class="background-item flex">
+                                 <div class="icon-bg">
+                                     <img src="https://placehold.co/40x40/39FF14/111827?text=IIT" alt="IIT Indore logo">
+                                 </div>
+                                 <div>
+                                     <h4>AI & Data Science Certification (2025 - 2026)</h4>
+                                     <p>IIT Indore (Professional)</p>
+                                     <p class="text-sm">Completed an intensive program covering advanced topics like deep learning and NLP, with a focus on real-world case studies and project-based learning.</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <!-- Experience Column -->
+                     <div class="space-y-8">
+                         <h3 class="text-3xl font-bold text-white">EXPERIENCE</h3>
+                         <div class="background-card space-y-8">
+                             <div class="background-item flex">
+                                 <div class="icon-bg">
+                                     <img src="https://placehold.co/40x40/39FF14/111827?text=P" alt="Project icon">
+                                 </div>
+                                 <div>
+                                     <h4>Data Analytics Project Lead (2024 - Present)</h4>
+                                     <p>Personal & Academic Projects</p>
+                                      <ul>
+                                         <li>
+                                             Led the development of a <span class="text-accent">Retail Sales Dashboard</span> using Tableau, improving inventory management by 15%.
+                                         </li>
+                                         <li>
+                                             Engineered a <span class="text-accent">Smart Expense Tracker</span> with Python, helping users reduce discretionary spending by an average of 30%.
+                                         </li>
+                                         <li>
+                                             Conducted <span class="text-accent">Civic Issue Analysis</span> to help optimize resource allocation for local authorities.
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <div class="background-item flex">
+                                 <div class="icon-bg">
+                                     <img src="https://placehold.co/40x40/39FF14/111827?text=C" alt="Club icon">
+                                 </div>
+                                 <div>
+                                     <h4>Head of Content Writing (2023 - 2024)</h4>
+                                     <p>Photography Club</p>
+                                     <p class="text-sm">Managed content creation and strategy for club communications, increasing member engagement. Coordinated with team members to plan and execute events.</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <section id="contact" class="reveal py-24">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="text-center md:text-left">
+                    <h2 class="bordered-heading inline-block mb-8">Contact Info</h2>
+                    <h3 class="text-5xl md:text-6xl font-bold leading-tight">
+                        Let's <span class="text-accent">connect</span> and<br>
+                        work <span class="text-accent">together!</span>
+                    </h3>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6">
+                        <a href="tel:+916262655244" class="about-social-icon">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </a>
+                        <div>
+                            <p class="text-secondary-text text-lg">Phone</p>
+                            <a href="tel:+916262655244" class="text-xl font-semibold hover:text-accent transition-colors">+91 62626 55244</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <a href="mailto:shikhagour2005@gmail.com" class="about-social-icon">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                        </a>
+                        <div>
+                            <p class="text-secondary-text text-lg">E-mail</p>
+                            <a href="mailto:shikhagour2005@gmail.com" class="text-xl font-semibold hover:text-accent transition-colors">shikhagour2005@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <a href="https://linkedin.com/in/shikha-gour-707103367" target="_blank" class="about-social-icon">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <div>
+                            <p class="text-secondary-text text-lg">LinkedIn</p>
+                            <a href="https://linkedin.com/in/shikha-gour-707103367" target="_blank" class="text-xl font-semibold hover:text-accent transition-colors">linkedin.com/in/shikha-gour</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-6 border-t border-gray-800">
+        <p class="text-secondary-text">&copy; 2025 Shikha Gour. Designed with passion.</p>
+    </footer>
+
+    <!-- Particle.js and Animation Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particle.js configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#39FF14" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#39FF14", opacity: 0.2, width: 1 },
+                move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 140, line_linked: { opacity: 0.7 } }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+
+        const toggleMenu = () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            // Optional: prevent body scroll when menu is open
+            document.body.style.overflow = mobileMenu.classList.contains('hidden') ? '' : 'hidden';
+        };
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    </script>
+</body>
+
+</html>
+
+
